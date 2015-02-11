@@ -13,8 +13,7 @@ public class main {
 		
 		String jonas = "C:\\Users\\ext_jvs\\JScover";
 		String axel = "C:\\jscover\\jscover- build";
-		
-		String path = axel;
+		String path = jonas;
 		
 		Commander com = new Commander();
 		CmdThread webServer = new CmdThread(com, path + "\\examples\\localStorage-proxy", "sh web-server.sh");
