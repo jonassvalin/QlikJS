@@ -14,8 +14,6 @@ public class main {
 		System.out.println("1");
 		CmdThread webServer = new CmdThread(g, "C:\\Users\\ext_jvs\\JScover\\examples\\localStorage-proxy", "sh web-server.sh");
 		CmdThread jscoverProxy = new CmdThread(g, "C:\\Users\\ext_jvs\\JScover\\examples\\localStorage-proxy", "sh jscover-proxy.sh");
-		System.out.println(a.toString());
-		System.out.println(b.toString());
 		System.out.println("2");
 		Result result = JUnitCore.runClasses(Test3.class);
 		System.out.println("3");
