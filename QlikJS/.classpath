@@ -42,5 +42,6 @@
 	<classpathentry kind="lib" path="C:/selenium/selenium-2.44.0/libs/xalan-2.7.1.jar"/>
 	<classpathentry kind="lib" path="C:/selenium/selenium-2.44.0/libs/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/selenium/selenium-2.44.0/libs/xml-apis-1.4.01.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/QlikJSTest"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
