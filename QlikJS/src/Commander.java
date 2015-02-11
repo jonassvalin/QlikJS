@@ -4,11 +4,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class git_commander {
+public class Commander {
 
 	private String cmd;
+	private ProcessBuilder processBuilder;
+	private Process process;
 
-	public git_commander(){
+	public Commander(){
 
 		//this.cmd = "cd " + "\"" + path + "\" && ";                               
 		// "cmd.exe", "/c", "cd \"C:\\git\\qliktest\" && git diff a7afc9227df4aba409e652054f0f92c992230784"
@@ -32,9 +34,9 @@ public class git_commander {
 
 	private BufferedReader reader(String path, String command){
 		cmd = "cd " + "\"" + path + "\" && " + command; 
-		ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+		processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
 		processBuilder.redirectErrorStream(true);
-		Process process = null;
+		process = null;
 		try {
 			process = processBuilder.start();
 		} catch (IOException e1) {
@@ -42,5 +44,9 @@ public class git_commander {
 			e1.printStackTrace();
 		}
 		return new BufferedReader(new InputStreamReader(process.getInputStream()));
+	}
+	
+	public void stop() {
+		process.destroy();
 	}
 }
