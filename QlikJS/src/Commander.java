@@ -12,8 +12,6 @@ public class Commander {
 
 	public Commander(){
 
-		//this.cmd = "cd " + "\"" + path + "\" && ";                               
-		// "cmd.exe", "/c", "cd \"C:\\git\\qliktest\" && git diff a7afc9227df4aba409e652054f0f92c992230784"
 	}
 	public ArrayList<String> run(String path, String command){
 		BufferedReader r = reader(path, command);
