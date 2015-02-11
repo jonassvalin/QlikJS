@@ -10,13 +10,19 @@ import com.testscripts.Test3;
 public class main {
 
 	public static void main(String[] args) {
+		
+		String jonas = "C:\\Users\\ext_jvs\\JScover";
+		String axel = "C:\\jscover\\jscover- build";
+		
+		String path = axel;
+		
 		Commander com = new Commander();
-		CmdThread webServer = new CmdThread(com, "C:\\Users\\ext_jvs\\JScover\\examples\\localStorage-proxy", "sh web-server.sh");
-		CmdThread jscoverProxy = new CmdThread(com, "C:\\Users\\ext_jvs\\JScover\\examples\\localStorage-proxy", "sh jscover-proxy.sh");
+		CmdThread webServer = new CmdThread(com, path + "\\examples\\localStorage-proxy", "sh web-server.sh");
+		CmdThread jscoverProxy = new CmdThread(com, path + "\\examples\\localStorage-proxy", "sh jscover-proxy.sh");
 		Result result = JUnitCore.runClasses(Test3.class);
 		webServer.stopProcess();
 		jscoverProxy.stopProcess();
-		CmdThread jsResults = new CmdThread(com, "C:\\Users\\ext_jvs\\JScover", "java -cp target/dist/JSCover-all.jar jscover.report.Main --format=COBERTURAXML coverage target/local-storage-proxy/no-frames/original-src");
+		CmdThread jsResults = new CmdThread(com, path, "java -cp target/dist/JSCover-all.jar jscover.report.Main --format=COBERTURAXML coverage target/local-storage-proxy/no-frames/original-src");
 		jsResults.stopProcess();
 		System.exit(0);
 	}
