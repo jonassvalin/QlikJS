@@ -17,7 +17,7 @@ public class ReadXMLFile {
 
 
 		try {
-
+			// DETTA ÄR EN ÄNDRING
 			File fXmlFile = new File(path);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			dbFactory.setAttribute("http://xml.org/sax/features/namespaces", true);
