@@ -4,6 +4,7 @@ import junit.framework.Test;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
+
 import com.testscripts.Test3;
 
 public class main {
@@ -11,8 +12,8 @@ public class main {
 	public static void main(String[] args) {
 		git_commander g = new git_commander();
 		System.out.println("1");
-		ArrayList<String> a =  g.run("C:\\Users\\ext_jvs\\JScover\\examples\\localStorage-proxy", "sh web-server.sh");
-		ArrayList<String> b =  g.run("C:\\Users\\ext_jvs\\JScover\\examples\\localStorage-proxy", "sh jscover-proxy.sh");
+		CmdThread webServer = new CmdThread(g, "C:\\Users\\ext_jvs\\JScover\\examples\\localStorage-proxy", "sh web-server.sh");
+		CmdThread jscoverProxy = new CmdThread(g, "C:\\Users\\ext_jvs\\JScover\\examples\\localStorage-proxy", "sh jscover-proxy.sh");
 		System.out.println(a.toString());
 		System.out.println(b.toString());
 		System.out.println("2");

@@ -18,16 +18,15 @@ public class git_commander {
 		ArrayList result = new ArrayList<String>(); 
 		String a = "";
 		try{
-			while(true){
+			while(true) {
 				a = r.readLine();
-				if(a != null){
+				if(a != null) {
 					result.add(a);
-				}else{break;}
+				} else { break; }
 			}
-		}catch(IOException e){
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
-
 		return result;
 	}
 
