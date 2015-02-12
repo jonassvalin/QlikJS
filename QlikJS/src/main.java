@@ -10,11 +10,13 @@ import com.testscripts.Test3;
 public class main {
 
 	public static void main(String[] args) {
-		
+
 		String jonas = "C:\\Users\\ext_jvs\\JScover";
 		String axel = "C:\\jscover\\jscover- build";
 
 		String path = axel;
+		new MoveRemove(path + "\\target\\local-storage-proxy\\no-frames\\jscoverage.json");
+		
 		Commander com = new Commander();
 		CmdThread webServer = new CmdThread(com, path + "\\examples\\localStorage-proxy", "sh web-server.sh");
 		CmdThread jscoverProxy = new CmdThread(com, path + "\\examples\\localStorage-proxy", "sh jscover-proxy.sh");
@@ -26,6 +28,7 @@ public class main {
 		//new ReadXMLFile( path +"\\target\\local-storage-proxy\\no-frames\\" , "cobertura-coverage.xml");
 		//new ReadXMLFile( path +"\\target\\local-storage-proxy\\no-frames\\" , "cobertura-coverage.xml");
 		//new ReadJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
+		
 		System.exit(0);
 	}
 }
