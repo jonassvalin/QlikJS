@@ -18,7 +18,7 @@ public class CmdThread extends Thread {
 	}
 
 	public void stopProcess() {
-		g.stop();
+		//g.stop();
 		this.interrupt();
 	}
 }
