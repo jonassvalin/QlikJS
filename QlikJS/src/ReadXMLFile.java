@@ -21,7 +21,7 @@ public class ReadXMLFile {
 			File fXmlFile = new File(path + xmlName);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			/*dbFactory.setAttribute("http://xml.org/sax/features/namespaces", true);
-			//dbFactory.setAttribute("http://xml.org/sax/features/validation", false);
+			dbFactory.setAttribute("http://xml.org/sax/features/validation", false);
 			dbFactory.setAttribute("http://apache.org/xml/features/nonvalidating/load-dtd-grammar", false);
 			dbFactory.setAttribute("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 			dbFactory.setNamespaceAware(true);
@@ -36,24 +36,29 @@ public class ReadXMLFile {
 			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
 			doc.getDocumentElement().normalize();
 			NodeList nList = doc.getElementsByTagName("class");
-			
-			File jsonFile = new File(path + "coverageanalysis.txt");
-			if (jsonFile.exists())
-		         jsonFile.delete();
 			PrintWriter writer = new PrintWriter(path + "coverageanalysis.txt", "UTF-8");
-			writer.println("The following methods were covered: ");
+			writer.println("The following lines were covered: ");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 
 				Node nNode = nList.item(temp);
-				Node counter = nNode.getFirstChild();
-				Element eCounter = (Element) counter;
-				boolean covered = (Integer.parseInt(eCounter.getAttribute("covered")) > 0);
+				System.out.println(nNode.hasChildNodes());
+				//Node linesNode = nNode.getFirstChild();
+				NodeList lineList = nNode.getChildNodes();
+				
+				for (int temp2 = 0; temp2 < lineList.getLength(); temp2++) {
 
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					if (covered) {
-						writer.println("\n" + eElement.getAttribute("name"));
+					Node lineNode = nList.item(temp2);
+					//
+					Element test = (Element) lineNode;
+					System.out.println(test.getAttribute("number"));
+					//
+					
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element lineNumber = (Element) lineNode;
+						int number = Integer.parseInt(lineNumber.getAttribute("number"));
+						//writer.println("\n" + number);
+						System.out.println(number);
 					}
 				}
 			}
