@@ -25,7 +25,7 @@ public class main {
 		jsResults.stopProcess();
 		//new ReadXMLFile( path +"\\target\\local-storage-proxy\\no-frames\\" , "cobertura-coverage.xml");
 		//new ReadXMLFile( path +"\\target\\local-storage-proxy\\no-frames\\" , "cobertura-coverage.xml");
-		new ReadJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
+		//new ReadJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
 		System.exit(0);
 	}
 }
