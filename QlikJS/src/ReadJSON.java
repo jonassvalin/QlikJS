@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
@@ -12,6 +13,9 @@ public class ReadJSON {
 		try {
 			Object obj = parser.parse(new FileReader(path+"jscoverage.json"));
 			JSONObject jsonObject = (JSONObject) obj;
+			Set<String> keys = jsonObject.keySet();
+			System.out.println("here!"+keys);
+			
 			JSONObject temp = (JSONObject) jsonObject.get("//test.js");
 			JSONArray lineData = (JSONArray) temp.get("lineData");
 			Iterator<Integer> it = lineData.iterator();
