@@ -13,23 +13,32 @@ public class ReadJSON {
 		try {
 			Object obj = parser.parse(new FileReader(path+"jscoverage.json"));
 			JSONObject jsonObject = (JSONObject) obj;
-			Set<String> keys = jsonObject.keySet();
-			System.out.println("here!"+keys);
-			
-			JSONObject temp = (JSONObject) jsonObject.get("//test.js");
-			JSONArray lineData = (JSONArray) temp.get("lineData");
-			Iterator<Integer> it = lineData.iterator();
-			
+			Iterator keys = jsonObject.keySet().iterator();
 			PrintWriter writer = new PrintWriter(path + "coverageanalysis.txt", "UTF-8");
-			int counter = 0;
-			while (it.hasNext()) {
-				writer.println(counter + " " + it.next());
-				counter++;
+
+			while (keys.hasNext()) {
+				String currentKey = (String) keys.next();
+				writer.print(currentKey+";");
+				JSONObject temp = (JSONObject) jsonObject.get(currentKey);
+				JSONArray lineData = (JSONArray) temp.get("lineData");
+				Iterator<Integer> it = lineData.iterator();
+
+				int counter = 0;
+				while (it.hasNext()) {
+					Object object = it.next();
+					if (object != null) {
+						long covered = (long) object;
+						if (covered > 0) {
+							writer.print(counter);
+								writer.print(",");
+						}
+					}
+					counter++;
+				}
+				writer.println();
 			}
-			//writer.println("The following lines were covered: ");
-			
 			writer.close();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
