@@ -14,11 +14,11 @@ public class CmdThread extends Thread {
 	}
 	
 	public void run() {
-		ArrayList<String> a = g.run(path, command);
+		String a = g.run(path, command);
 	}
 
 	public void stopProcess() {
-		//g.stop();
+		g.stop();
 		this.interrupt();
 	}
 }

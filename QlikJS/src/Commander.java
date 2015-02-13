@@ -13,14 +13,16 @@ public class Commander {
 	public Commander(){
 
 	}
+/*	
 	public ArrayList<String> run(String path, String command){
 		BufferedReader r = reader(path, command);
-		ArrayList result = new ArrayList<String>(); 
+		ArrayList<String> result = new ArrayList<String>(); 
 		String a = "";
 		try{
 			while(true) {
 				a = r.readLine();
 				if(a != null) {
+					System.out.println(a);
 					result.add(a);
 				} else { break; }
 			}
@@ -29,8 +31,8 @@ public class Commander {
 		}
 		return result;
 	}
-
-	private BufferedReader reader(String path, String command){
+*/
+	public String run(String path, String command){
 		cmd = "cd " + "\"" + path + "\" && " + command; 
 		processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
 		processBuilder.redirectErrorStream(true);
@@ -41,7 +43,7 @@ public class Commander {
 			System.out.println("fel i processbuilder.start");
 			e1.printStackTrace();
 		}
-		return new BufferedReader(new InputStreamReader(process.getInputStream()));
+		return new InputStreamReader(process.getInputStream()).toString();
 	}
 	
 	public void stop() {

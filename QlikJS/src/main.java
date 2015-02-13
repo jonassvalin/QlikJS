@@ -13,22 +13,27 @@ public class main {
 
 		String jonas = "C:\\Users\\ext_jvs\\JScover";
 		String axel = "C:\\jscover\\jscover- build";
-
-		String path = axel;
-		new MoveRemove(path + "\\target\\local-storage-proxy\\no-frames\\jscoverage.json");
 		
-		Commander com = new Commander();
-		CmdThread webServer = new CmdThread(com, path + "\\examples\\localStorage-proxy", "sh web-server.sh");
-		CmdThread jscoverProxy = new CmdThread(com, path + "\\examples\\localStorage-proxy", "sh jscover-proxy.sh");
-		Result result = JUnitCore.runClasses(Test3.class);
-		webServer.stopProcess();
-		jscoverProxy.stopProcess();
-		CmdThread jsResults = new CmdThread(com, path, "java -cp target/dist/JSCover-all.jar jscover.report.Main --format=COBERTURAXML target/local-storage-proxy/no-frames/ target/local-storage-proxy/no-frames/original-src");
-		jsResults.stopProcess();
+		String pathWamp = "C:\\wamp\\www";
+		String Gitcommand = "git diff --pretty=format:oneline 11f91de8996b758302c39381e0425f32126eae1d";
+		String Gitcommandtest = "git diff --pretty=format:{%h%x09%an%x09%ad%x09%s} 11f91de8996b758302c39381e0425f32126eae1d";
+//'{%n^@^hash^@^:^@^%h^@^,%n^@^author^@^:^@^%an^@^,%n^@^date^@^:^@^%ad^@^,%n^@^email^@^:^@^%aE^@^,%n^@^message^@^:^@^%s^@^,%n^@^commitDate^@^:^@^%ai^@^,%n^@^age^@^:^@^%cr^@^},\'';
+		//\\{%n^@^hash^@^:^@^%h^@^,%n^@^Filename^@^:^@^%f^@^}
+		String path = axel;
+		//new MoveRemove(path + "\\target\\local-storage-proxy\\no-frames\\jscoverage.json");
+		
+		//CmdThread webServer = new CmdThread(new Commander(), path + "\\examples\\localStorage-proxy", "sh web-server.sh");
+		//CmdThread jscoverProxy = new CmdThread(new Commander(), path + "\\examples\\localStorage-proxy", "sh jscover-proxy.sh");
+		//Result result = JUnitCore.runClasses(Test3.class);
+		//webServer.stopProcess();
+		//jscoverProxy.stopProcess();
+		//CmdThread jsResults = new CmdThread(com, path, "java -cp target/dist/JSCover-all.jar jscover.report.Main --format=COBERTURAXML target/local-storage-proxy/no-frames/ target/local-storage-proxy/no-frames/original-src");
+		//jsResults.stopProcess();
 		//new ReadXMLFile( path +"\\target\\local-storage-proxy\\no-frames\\" , "cobertura-coverage.xml");
 		//new ReadXMLFile( path +"\\target\\local-storage-proxy\\no-frames\\" , "cobertura-coverage.xml");
 		//new ReadJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
-		
+		String gitResult = new Commander().run( pathWamp , Gitcommandtest +" > git.diff");
+		//newAutoCompare("" ,pathWamp +".git.diff" );
 		System.exit(0);
 	}
 }
