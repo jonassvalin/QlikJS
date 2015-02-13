@@ -17,7 +17,7 @@ public class main {
 		String pathWamp = "C:\\wamp\\www";
 		String Gitcommand = "git diff --pretty=format:oneline 11f91de8996b758302c39381e0425f32126eae1d";
 
-		String path = jonas;
+		String path = axel;
 		new MoveRemove(path + "\\target\\local-storage-proxy\\no-frames\\jscoverage.json");
 		
 		CmdThread webServer = new CmdThread(new Commander(), path + "\\examples\\localStorage-proxy", "sh web-server.sh");
@@ -25,11 +25,9 @@ public class main {
 		Result result = JUnitCore.runClasses(Test3.class);
 		webServer.stopProcess();
 		jscoverProxy.stopProcess();
-		CmdThread jsResults = new CmdThread(new Commander(), path, "java -cp target/dist/JSCover-all.jar jscover.report.Main --format=COBERTURAXML target/local-storage-proxy/no-frames/ target/local-storage-proxy/no-frames/original-src");
-		jsResults.stopProcess();
 		new ReadJSONtoJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
 		String gitResult = new Commander().run( pathWamp , Gitcommand +" > git.diff");
-		new AutoCompare("" ,pathWamp +".git.diff" );
+		//new AutoCompare("" ,pathWamp +".git.diff" );
 
 
 		System.exit(0);
