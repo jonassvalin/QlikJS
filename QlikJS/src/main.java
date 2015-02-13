@@ -25,7 +25,7 @@ public class main {
 		jscoverProxy.stopProcess();
 		CmdThread jsResults = new CmdThread(com, path, "java -cp target/dist/JSCover-all.jar jscover.report.Main --format=COBERTURAXML target/local-storage-proxy/no-frames/ target/local-storage-proxy/no-frames/original-src");
 		jsResults.stopProcess();
-		new ReadJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
+		new ReadJSONtoJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
 		
 		System.exit(0);
 	}
