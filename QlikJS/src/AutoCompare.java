@@ -44,22 +44,23 @@ private Pattern p;
 		int counter = 0;
 		String currentKey = "";
 		JSONObject output = new JSONObject();
+		JSONArray currentKeyArray = null;
 
 		while (line != null) {
-			counter ++;
-			System.out.println(counter + " : " + line);
 			if(Pattern.matches("diff --.*", line)){
+				currentKeyArray = new JSONArray();
 				String[] Lines = line.split("/");
 				currentKey = Lines[Lines.length-1];
 				//output.put(currentKey, currentKeyArray);
 			}else if (lineRegex(line) ){
+				counter ++;
+				System.out.println(counter + " : " + line);
 				line = line.substring(line.indexOf("@@") +2 ,line.indexOf("@@",line.indexOf(" ") ) );
 				//System.out.println(line.substring(line.indexOf("+"),line.indexOf(" ",line.indexOf("+"))).replace("+",""));
 				String lineNumber[] = line.substring(line.indexOf("+"),line.indexOf(" ",line.indexOf("+"))).replace("+","").split(",");
 				lineCounter  = Integer.parseInt(lineNumber[0]);
 				lineEnd = Integer.parseInt(lineNumber[1]) + Integer.parseInt(lineNumber[0]);
-				JSONArray currentKeyArray = new JSONArray();
-				while(lineCounter <= lineEnd){
+				while(lineCounter < lineEnd){
 					currentKeyArray.add(Integer.toString(lineCounter));
 					lineCounter++;
 				}
