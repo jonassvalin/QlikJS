@@ -17,7 +17,7 @@ public class main {
 		String pathWamp = "C:\\wamp\\www";
 		String Gitcommand = "git diff --pretty=format:oneline 11f91de8996b758302c39381e0425f32126eae1d";
 
-		String path = axel;
+		String path = jonas;
 		new MoveRemove(path + "\\target\\local-storage-proxy\\no-frames\\jscoverage.json");
 		
 		CmdThread webServer = new CmdThread(new Commander(), path + "\\examples\\localStorage-proxy", "sh web-server.sh");
