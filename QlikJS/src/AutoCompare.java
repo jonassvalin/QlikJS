@@ -12,13 +12,21 @@ public class AutoCompare {
 	private JSONArray currentKeyArray;
 	private String currentKey;
 	private String line;
+	private String comPath;
+	private static final String REGEX = "^\100\100\\s.([0-9]+).([0-9]+)\\s.([0-9]+).([0-9]+)\\s\100\100.*";
 
 	public AutoCompare(String covPath, String comPath) {
+		this.comPath = comPath;
 		File coverage = new File(covPath);
-		File commits = new File(comPath);
-		p = Pattern
-				.compile("^\100\100\\s.([0-9]+).([0-9]+)\\s.([0-9]+).([0-9]+)\\s\100\100.*");
+		File commits = new File(comPath + "//git.diff");
+		p = Pattern.compile(REGEX);
 		getGitLines(commits);
+		finalResult();
+	}
+
+	private void finalResult() {
+		
+		
 	}
 
 	private void getGitLines(File filePath) {
@@ -45,7 +53,7 @@ public class AutoCompare {
 
 	private void writeToFile() throws IOException {
 		PrintWriter writer = new PrintWriter(
-				"C:/wamp/www/coverageanalysis.json");
+				comPath +  "//coverageanalysis.json");
 		writer.print(output.toJSONString());
 		writer.flush();
 		writer.close();
