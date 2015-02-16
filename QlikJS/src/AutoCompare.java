@@ -39,7 +39,7 @@ public class AutoCompare {
 		
 		while (line != null) {
 			counter ++;
-			//System.out.println(counter + " : " + line);
+			System.out.println(counter + " : " + line);
 			if(Pattern.matches("diff --.*", line)){
 				//System.out.println(line);
 				inCode = false;

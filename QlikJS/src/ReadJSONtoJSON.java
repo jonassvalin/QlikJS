@@ -10,6 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
 public class ReadJSONtoJSON {
+	
 	public ReadJSONtoJSON(String path) {
 		JSONParser parser = new JSONParser();
 		try {
