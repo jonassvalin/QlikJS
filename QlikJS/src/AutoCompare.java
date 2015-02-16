@@ -46,7 +46,7 @@ public class AutoCompare {
 			}else if (linenum(line) && !inCode ){
 				line = line.substring(line.indexOf("@@") +2 ,line.indexOf("@@",line.indexOf(" ") ) );
 				System.out.println(line);
-				//System.out.println(line.substring(line.indexOf("+"),line.indexOf(" ",line.indexOf("+"))).replace("+",""));
+				System.out.println(line.substring(line.indexOf("+"),line.indexOf(" ",line.indexOf("+"))).replace("+",""));
 				String lineNumber[] = line.substring(line.indexOf("+"),line.indexOf(" ",line.indexOf("+"))).replace("+","").split(",");
 				lineCounter  = Integer.parseInt(lineNumber[0]);
 				lineEnd = Integer.parseInt(lineNumber[1]) + Integer.parseInt(lineNumber[0]);
@@ -54,7 +54,7 @@ public class AutoCompare {
 			
 			}else if(lineCounter < lineEnd && inCode){
 				int num = lineCounter;
-				//System.out.println("line number :" + String.valueOf(num));
+				System.out.println("line number :" + String.valueOf(num));
 				lineCounter ++;
 			}else if(lineCounter >= lineEnd && inCode){
 				//System.out.println("end");
