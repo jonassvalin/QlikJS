@@ -16,7 +16,7 @@ private Pattern p;
 		File coverage = new File(covPath);
 		File commits = new File(comPath);
 		this.p = Pattern.compile("^\100\100\\s.([0-9]+).([0-9]+)\\s.([0-9]+).([0-9]+)\\s\100\100.*");
-		ArrayList<String> a = getGitLines(comPath);
+		getGitLines(comPath);
 		
 		/*
 		 * try { Scanner scanCoverage = new Scanner(coverage); while
@@ -33,7 +33,7 @@ private Pattern p;
 		 */
 	}
 
-	private ArrayList<String> getGitLines(String filePath){
+	private void getGitLines(String filePath) {
 		try {
 		FileReader file = new FileReader(filePath);	
 		BufferedReader br = new BufferedReader(file);
@@ -65,23 +65,25 @@ private Pattern p;
 				}
 				output.put(currentKey, currentKeyArray);
 			}
-
 			line = br.readLine();
 		}
+		
 		br.close();
 		PrintWriter writer = new PrintWriter("C:/wamp/www/coverageanalysis.json");
 		writer.print(output.toJSONString());
 		writer.flush();
 		writer.close();
 		}catch (IOException e) {
+
 			e.printStackTrace();
-		}	
-		return new ArrayList<String>();
+		}
 	}
+
 	private boolean lineRegex(String line) {
 		// System.out.println(line.trim());
 		Matcher m = p.matcher(line);
 		return m.matches();
+
 	}
-	
+
 }
