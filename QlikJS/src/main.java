@@ -26,7 +26,9 @@ public class main {
 		jscoverProxy.stopProcess();
 		new ReadJSONtoJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
 		*/
-		String gitResult = new Commander().run(WAMP, Gitcommand +" > git.diff");
+		Commander cm = new Commander();
+		String gitResult = cm.run(WAMP, Gitcommand +" > git.diff");
+		cm.stop();
 		new AutoCompare("", WAMP + ".\\git.diff");
 
 
