@@ -9,13 +9,13 @@ import com.testscripts.Test3;
 
 public class main {
 	
-	private static String JONAS = "C:\\Users\\ext_jvs\\JScover";
-	private static String AXEL = "C:\\jscover\\jscover- build";
-	private static String WAMP = "C:\\wamp\\www";
+	private static final String JONAS = "C:\\Users\\ext_jvs\\JScover";
+	private static final String AXEL = "C:\\jscover\\jscover- build";
+	private static final String WAMP = "C:\\wamp\\www";
 
 	public static void main(String[] args) {
 		
-		String path = AXEL;
+		String path = JONAS;
 		String Gitcommand = "git diff --pretty=oneline 11f91de8996b758302c39381e0425f32126eae1d";
 		new MoveRemove(path + "\\target\\local-storage-proxy\\no-frames\\jscoverage.json");
 		/*
