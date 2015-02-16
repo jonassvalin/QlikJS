@@ -15,7 +15,7 @@ public class main {
 
 	public static void main(String[] args) {
 		
-		String path = AXEL;
+		String path = AXEL ;
 		String Gitcommand = "git diff --pretty=oneline 11f91de8996b758302c39381e0425f32126eae1d";
 		new MoveRemove(path + "\\target\\local-storage-proxy\\no-frames\\jscoverage.json");
 		/*
@@ -27,7 +27,7 @@ public class main {
 		new ReadJSONtoJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
 		*/
 		String gitResult = new Commander().run(WAMP, Gitcommand +" > git.diff");
-		new AutoCompare("", WAMP + ".\\git.diff");
+		new AutoCompare("", WAMP + "\\git.diff");
 
 
 		System.exit(0);

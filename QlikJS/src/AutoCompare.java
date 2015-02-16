@@ -4,59 +4,57 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class AutoCompare {
 
 	public AutoCompare(String covPath, String comPath) {
 		File coverage = new File(covPath);
 		File commits = new File(comPath);
-		ArrayList<String> a = getGitLines(comPath);
-		/*
-		 * try { Scanner scanCoverage = new Scanner(coverage); while
-		 * (scanCoverage.hasNextLine()) { String coverageLine =
-		 * scanCoverage.nextLine(); Scanner scanCommits = new Scanner(commits);
-		 * while (scanCommits.hasNextLine()) { String commitsLine =
-		 * scanCommits.nextLine(); if(commitsLine.contains(coverageLine) &&
-		 * coverageLine.length() > 3) { System.out.println("Method: " +
-		 * coverageLine); } }
-		 * 
-		 * } } catch (Exception e) { System.out.println("SCANNER ISSUE " + e);
-		 * 
-		 * }
-		 */
+		getGitLines(comPath);
+
 	}
 
-	private ArrayList<String> getGitLines(String filePath) {
+	private void getGitLines(String filePath) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;
 			int lineEnd = 0;
 			int lineCounter = 0;
+			String currentKey = "";
+			JSONObject output = new JSONObject();
 			line = br.readLine();
-
+			
 			while (line != null) {
+				System.out.println(line);
 				if (Pattern.matches("diff --.*", line)) {
-					System.out.println(line);
+					String[] Lines = line.split("/");
+					currentKey = Lines[Lines.length-1];
 				} else if (lineRegex(line)) {
 					line = line.substring(line.indexOf("@@") + 2,
 							line.indexOf("@@", line.indexOf(" ")));
-					System.out.println(line);
-					System.out.println(line.substring(line.indexOf("+"),
-							line.indexOf(" ", line.indexOf("+"))).replace("+",
-							""));
-					String lineNumber[] = line
-							.substring(line.indexOf("+"),
-									line.indexOf(" ", line.indexOf("+")))
-							.replace("+", "").split(",");
+					String lineNumber[] = line.substring(line.indexOf("+"),line.indexOf(" ", line.indexOf("+"))).replace("+", "").split(",");
 					lineCounter = Integer.parseInt(lineNumber[0]);
-					lineEnd = Integer.parseInt(lineNumber[1])
-							+ Integer.parseInt(lineNumber[0]);
+					lineEnd = Integer.parseInt(lineNumber[1]) + Integer.parseInt(lineNumber[0]);
+					JSONArray currentKeyArray = new JSONArray();
+					while(lineCounter <= lineEnd){
+						currentKeyArray.add(lineCounter);
+						lineCounter++;
+					}
+					System.out.println(currentKey);
+					output.put(currentKey, currentKeyArray);
 				}
 				line = br.readLine();
 			}
+			br.close();
+			PrintWriter writer = new PrintWriter("C:\\wamp\\www\\coverageanalysis.json");
+			writer.print(output.toJSONString());
+			writer.flush();
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return new ArrayList<String>();
 	}
 
 	private boolean lineRegex(String line) {
