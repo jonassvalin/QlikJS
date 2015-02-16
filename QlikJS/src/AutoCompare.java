@@ -25,51 +25,46 @@ public class AutoCompare {
 		 */
 	}
 
-	private ArrayList<String> getGitLines(String filePath){
+	private ArrayList<String> getGitLines(String filePath) {
 		try {
-		BufferedReader br = new BufferedReader(new FileReader(filePath));
-		String line;
-		int lineEnd = 0;
-		int lineCounter = 0;
-		line = br.readLine();
-		int counter = 0;
-		boolean inCode = false;
-		
-		
-		
-		while (line != null) {
-			counter ++;
-			System.out.println(counter + " : " + line);
-			if(Pattern.matches("diff --.*", line)){
-				//System.out.println(line);
-				inCode = false;
-			}else if (linenum(line) && !inCode ){
-				line = line.substring(line.indexOf("@@") +2 ,line.indexOf("@@",line.indexOf(" ") ) );
-				System.out.println(line);
-				System.out.println(line.substring(line.indexOf("+"),line.indexOf(" ",line.indexOf("+"))).replace("+",""));
-				String lineNumber[] = line.substring(line.indexOf("+"),line.indexOf(" ",line.indexOf("+"))).replace("+","").split(",");
-				lineCounter  = Integer.parseInt(lineNumber[0]);
-				lineEnd = Integer.parseInt(lineNumber[1]) + Integer.parseInt(lineNumber[0]);
-				inCode = true;
-			
-			}else if(lineCounter < lineEnd && inCode){
-				int num = lineCounter;
-				System.out.println("line number :" + String.valueOf(num));
-				lineCounter ++;
-			}else if(lineCounter >= lineEnd && inCode){
-				//System.out.println("end");
-				inCode = false;
-			}
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			String line;
+			int lineEnd = 0;
+			int lineCounter = 0;
 			line = br.readLine();
-		} 
-		}catch (IOException e) {
+
+			while (line != null) {
+				if (Pattern.matches("diff --.*", line)) {
+					System.out.println(line);
+				} else if (lineRegex(line)) {
+					line = line.substring(line.indexOf("@@") + 2,
+							line.indexOf("@@", line.indexOf(" ")));
+					System.out.println(line);
+					System.out.println(line.substring(line.indexOf("+"),
+							line.indexOf(" ", line.indexOf("+"))).replace("+",
+							""));
+					String lineNumber[] = line
+							.substring(line.indexOf("+"),
+									line.indexOf(" ", line.indexOf("+")))
+							.replace("+", "").split(",");
+					lineCounter = Integer.parseInt(lineNumber[0]);
+					lineEnd = Integer.parseInt(lineNumber[1])
+							+ Integer.parseInt(lineNumber[0]);
+				}
+				line = br.readLine();
+			}
+		} catch (IOException e) {
 			e.printStackTrace();
-		}	
+		}
 		return new ArrayList<String>();
 	}
-	private boolean linenum(String line){
-		//System.out.println(line.trim());
-		return Pattern.matches("(\\0100\\0100)", line.trim());
+
+	private boolean lineRegex(String line) {
+		// System.out.println(line.trim());
+		return Pattern
+				.matches(
+						"^\100\100\\s.([0-9]+).([0-9]+)\\s.([0-9]+).([0-9]+)\\s\100\100.*",
+						line);
 	}
-	
+
 }
