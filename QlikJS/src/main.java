@@ -27,7 +27,7 @@ public class main {
 		new ReadJSONtoJSON(path +"\\target\\local-storage-proxy\\no-frames\\");
 		*/
 		String gitResult = new Commander().run(WAMP, Gitcommand +" > git.diff");
-		new AutoCompare("", WAMP + ".\\git.diff");
+		new AutoCompare("", WAMP + "\\git.diff");
 
 
 		System.exit(0);
