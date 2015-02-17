@@ -16,7 +16,7 @@ public class main {
 	public static void main(String[] args) {
 
 		String path = JONAS;
-		String gitCommand = "git diff --pretty=oneline 11f91de8996b758302c39381e0425f32126eae1d";
+		String gitCommand = "git diff --pretty=oneline 11f91de8996b758302c39381e0425f32126eae1d > git.diff";
 		
 		new MoveRemove(path + "\\target\\local-storage-proxy\\no-frames\\jscoverage.json");
 		CmdThread webServer = new CmdThread(new Commander(), path + "\\examples\\localStorage-proxy", "sh web-server.sh");
@@ -27,12 +27,10 @@ public class main {
 		
 		new ReadJSONtoJSON(path + "\\target\\local-storage-proxy\\no-frames\\");
 		Commander cm = new Commander();
-		String gitResult = cm.run(WAMP, gitCommand +" > git.diff");
+		cm.run(WAMP, gitCommand);
 		cm.stop();
 		new AutoCompare(path + "\\target\\local-storage-proxy\\no-frames\\coverageanalysis.json", WAMP);
-
-
-
+		System.out.flush();
 		System.exit(0);
 	}
 }

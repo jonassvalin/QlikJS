@@ -13,7 +13,7 @@ public class Commander {
 	public Commander(){
 
 	}
-/*	
+	
 	public ArrayList<String> run(String path, String command){
 		BufferedReader r = reader(path, command);
 		ArrayList<String> result = new ArrayList<String>(); 
@@ -31,10 +31,11 @@ public class Commander {
 		}
 		return result;
 	}
-*/
-	public String run(String path, String command){
+
+	public BufferedReader reader(String path, String command){
 		cmd = "cd " + "\"" + path + "\" && " + command; 
 		processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+		System.out.println(cmd);
 		processBuilder.redirectErrorStream(true);
 		process = null;
 		try {
@@ -43,7 +44,7 @@ public class Commander {
 			System.out.println("fel i processbuilder.start");
 			e1.printStackTrace();
 		}
-		return new InputStreamReader(process.getInputStream()).toString();
+		return new BufferedReader(new InputStreamReader(process.getInputStream()));
 	}
 	
 	public void stop() {
