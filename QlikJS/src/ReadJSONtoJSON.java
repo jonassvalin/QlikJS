@@ -9,8 +9,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
-import com.google.gson.*;
-
 public class ReadJSONtoJSON {
 	
 	public ReadJSONtoJSON(String path) {
@@ -19,7 +17,6 @@ public class ReadJSONtoJSON {
 			Object obj = parser.parse(new FileReader(path+"jscoverage.json"));
 			JSONObject jsonObject = (JSONObject) obj;
 			Iterator keys = jsonObject.keySet().iterator();
-			
 			JSONObject output = new JSONObject();
 
 			while (keys.hasNext()) {
@@ -27,7 +24,6 @@ public class ReadJSONtoJSON {
 				JSONObject temp = (JSONObject) jsonObject.get(currentKey);
 				JSONArray lineData = (JSONArray) temp.get("lineData");
 				Iterator<Integer> it = lineData.iterator();
-				
 				JSONArray currentKeyArray = new JSONArray();
 
 				int counter = 0;
