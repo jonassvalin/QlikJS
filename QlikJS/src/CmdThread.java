@@ -14,7 +14,7 @@ public class CmdThread extends Thread {
 	}
 	
 	public void run() {
-		String a = g.run(path, command);
+		g.run(path, command);
 	}
 
 	public void stopProcess() {

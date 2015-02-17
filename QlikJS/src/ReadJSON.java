@@ -14,7 +14,7 @@ public class ReadJSON {
 			Object obj = parser.parse(new FileReader(path+"jscoverage.json"));
 			JSONObject jsonObject = (JSONObject) obj;
 			Iterator keys = jsonObject.keySet().iterator();
-			PrintWriter writer = new PrintWriter(path + "coverageanalysis.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter(path + "coverageanalysis.json", "UTF-8");
 
 			while (keys.hasNext()) {
 				String currentKey = (String) keys.next();

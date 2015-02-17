@@ -127,7 +127,7 @@ public class AutoCompare {
 	private void newFileIdentified(String line) {
 		currentKeyArray = new JSONArray();
 		String[] Lines = line.split("/");
-		currentKey = "//" + Lines[Lines.length - 1];
+		currentKey = "/" + Lines[Lines.length - 1];
 		output.put(currentKey, currentKeyArray);
 	}
 
